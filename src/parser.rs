@@ -306,11 +306,11 @@ fn compute_roll<RNG: DiceRollSource>(
         Rule::nb_dice => {
             dice.next(); // skip `d` token
             let n = maybe_nb.as_str().parse::<u64>().unwrap();
-            if n > MAX_NB_DICE {
-                return Err(
-                    format!("Exceed maximum allowed number of dices ({})", MAX_NB_DICE).into(),
-                );
-            }
+            // if n > MAX_NB_DICE {
+            //     return Err(
+            //         format!("Exceed maximum allowed number of dices ({})", MAX_NB_DICE).into(),
+            //     );
+            // }
             n
         }
         Rule::roll => 1, // no number before `d`, assume 1 dice
@@ -326,9 +326,10 @@ fn compute_roll<RNG: DiceRollSource>(
 
     if sides == 0 {
         return Err("Dice can't have 0 sides".into());
-    } else if sides > MAX_DICE_SIDES {
-        return Err(format!("Dice can't have more than {}", MAX_DICE_SIDES).into());
     }
+    // else if sides > MAX_DICE_SIDES {
+    //     return Err(format!("Dice can't have more than {}", MAX_DICE_SIDES).into());
+    // }
 
     let mut res = roll_dice(nb, sides, rng);
     let mut modifier = TotalModifier::None(Rule::expr);
