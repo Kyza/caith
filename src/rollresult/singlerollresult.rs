@@ -66,9 +66,8 @@ impl SingleRollResult {
     }
 
     /// Add a step in the history
-    pub(crate) fn add_history(&mut self, mut history: Vec<DiceResult>, is_fudge: bool) {
+    pub(crate) fn add_history(&mut self, history: Vec<DiceResult>, is_fudge: bool) {
         self.dirty = true;
-        history.sort_unstable_by(|a, b| b.cmp(a));
         self.history.push(if is_fudge {
             RollHistory::Fudge(history.iter().map(|r| r.res).collect())
         } else {

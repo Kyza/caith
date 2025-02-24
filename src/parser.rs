@@ -17,8 +17,8 @@ pub trait DiceRollSource {
 pub(crate) struct RollParser;
 
 // arbitrary limit to avoid OOM
-const MAX_DICE_SIDES: u64 = 5000;
-const MAX_NB_DICE: u64 = 5000;
+// const MAX_DICE_SIDES: u64 = 5000;
+// const MAX_NB_DICE: u64 = 5000;
 
 // number represent nb dice to keep/drop
 #[derive(Clone, PartialEq)]
